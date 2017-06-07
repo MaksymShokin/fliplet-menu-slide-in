@@ -9,3 +9,9 @@ $('.fl-menu-overlay').click(function() {
 $('.fl-menu .fl-close-menu').on('click', function() {
   $(this).parents('.fl-menu').removeClass('active');
 });
+
+$('[open-about-overlay]').on('click', function() {
+  Fliplet.Navigate.to({
+    action: 'about-overlay'
+  });
+});

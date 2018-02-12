@@ -154,13 +154,18 @@
   z-index: 20;
   overflow: hidden;
   pointer-events: none;
-  -webkit-transition: none;
   -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  -webkit-transition: all 0s linear 0.2s;
+  transition: all 0s linear 0.2s;
 }
 
 .fl-menu.active {
   pointer-events: all;
   -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0s linear 0s;
+  transition: all 0s linear 0s;
 }
 
 .fl-menu-overlay {
@@ -173,6 +178,7 @@
   z-index: 10;
   opacity: 0;
   -webkit-transition: opacity 0.1s linear;
+  transition: opacity 0.1s linear;
   pointer-events: none;
 }
 
@@ -219,6 +225,8 @@
 .fl-menu.active .fl-menu-panel {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s ease-out, opacity 0.2s linear;
+  transition: transform 0.2s ease-out, opacity 0.2s linear;
   opacity: 1;
   pointer-events: all;
 }

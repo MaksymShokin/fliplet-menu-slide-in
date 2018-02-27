@@ -1,47 +1,53 @@
 var $menuElement = $('[data-name="Slide in"]');
 var menuInstanceId = $menuElement.data('id');
-var data = Fliplet.Widget.getData(menuInstanceId) || {};
 
-var lastScrollTop = 0;
-
-if (Modernizr.backdropfilter) {
-  $('.body').addClass('backdropfilter');
+if (menuInstanceId) {
+  init();
 }
 
-$('.fl-menu-overlay').click(function() {
-  $(this).closest('.fl-menu').removeClass('active');
-  $('.fl-viewport-header .hamburger').removeClass('is-active');
-});
+function init() {
+  var data = Fliplet.Widget.getData(menuInstanceId) || {};
+  var lastScrollTop = 0;
 
-$('.fl-menu .fl-close-menu').on('click', function() {
-  $(this).parents('.fl-menu').removeClass('active');
-});
+  if (Modernizr.backdropfilter) {
+    $('.body').addClass('backdropfilter');
+  }
 
-$('[open-about-overlay]').on('click', function() {
-  Fliplet.Navigate.to({
-    action: 'about-overlay'
+  if (data.hide) {
+    $(window).scroll(function(){
+      var st = $(this).scrollTop();
+      if (st > lastScrollTop){
+        // downscroll code
+        $('body').addClass('fl-top-menu-hidden');
+      } else {
+        // upscroll code
+        $('body').removeClass('fl-top-menu-hidden');
+      }
+      lastScrollTop = st;
+    });
+  }
+
+  $('.fl-menu-overlay').click(function() {
+    $(this).closest('.fl-menu').removeClass('active');
+    $('.fl-viewport-header .hamburger').removeClass('is-active');
   });
-});
 
-$('[data-fl-toggle-menu]').click(function (event) {
-  event.preventDefault();
-  $('.fl-viewport-header .hamburger').toggleClass('is-active');
-});
+  $('.fl-menu .fl-close-menu').on('click', function() {
+    $(this).parents('.fl-menu').removeClass('active');
+  });
 
-$('body').hammer().bind('swiperight', function() {
-  Fliplet.Navigate.back();
-});
+  $('[open-about-overlay]').on('click', function() {
+    Fliplet.Navigate.to({
+      action: 'about-overlay'
+    });
+  });
 
-if (data.hide) {
-  $(window).scroll(function(){
-    var st = $(this).scrollTop();
-    if (st > lastScrollTop){
-      // downscroll code
-      $('body').addClass('fl-top-menu-hidden');
-    } else {
-      // upscroll code
-      $('body').removeClass('fl-top-menu-hidden');
-    }
-    lastScrollTop = st;
+  $('[data-fl-toggle-menu]').click(function (event) {
+    event.preventDefault();
+    $('.fl-viewport-header .hamburger').toggleClass('is-active');
+  });
+
+  $('body').hammer().bind('swiperight', function() {
+    Fliplet.Navigate.back();
   });
 }

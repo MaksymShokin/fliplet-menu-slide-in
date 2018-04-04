@@ -231,6 +231,10 @@
   left: 0;
 }
 
+[data-simulator="iphone-x"] .fl-app-menu-toolbar {
+  padding-bottom: 34px;
+}
+
 .fl-app-menu-toolbar {
   position: absolute;
   bottom: 0;

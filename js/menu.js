@@ -1,12 +1,12 @@
-var $menuElement = $('[data-name="Slide in"]');
-var menuInstanceId = $menuElement.data('id');
+Fliplet.Widget.instance('slide-in', function (data) {
+
+var menuInstanceId = data.id;
 
 if (menuInstanceId) {
   init();
 }
 
 function init() {
-  var data = Fliplet.Widget.getData(menuInstanceId) || {};
   var lastScrollTop = 0;
 
   if ($('li.with-icon').length) {
@@ -54,3 +54,4 @@ function init() {
     $('body').toggleClass('has-slide-menu');
   });
 }
+});

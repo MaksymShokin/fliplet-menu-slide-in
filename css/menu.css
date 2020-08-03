@@ -386,6 +386,15 @@ html.android .fl-with-top-menu main.fl-page-content-wrapper {
   line-height: 44px;
   cursor: pointer;
 }
+
+.fl-menu.fl-app-menu.fl-menu-slide-in.active {
+  display: block;
+}
+
+.fl-menu.fl-app-menu.fl-menu-slide-in {
+  display: none;
+}
+
 @media screen and (min-width: 640px) {
   .fl-menu-slide-in .fl-menu-panel {
     left: 60%;
